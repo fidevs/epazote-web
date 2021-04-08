@@ -1,24 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
+
 import './App.css';
+import epazote from './assets/images/epazote.png';
+
+import { animateScroll as scroller } from 'react-scroll';
 
 function App() {
+  const [scroll, setScroll] = useState(0);
+
+  useEffect(() => {
+    window.addEventListener('scroll', updateScroll);
+    return () => {
+      window.removeEventListener('scroll', updateScroll);
+    }
+  }, []);
+  const updateScroll = () => setScroll(window.pageYOffset);
+
+  const scrollBottom = () => {
+    if (scroll > 450) scroller.scrollToTop();
+    else scroller.scrollToBottom();
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div id="container">
+      <button id="scoll-btn" onClick={scrollBottom}>{scroll > 450 ? 'INICIO' : 'MENU'}</button>
+      <div id="main">
+        <img src={epazote} alt="epazote.png"/>
+      </div>
+      <div id="menu">
+        <div id="menu-container">
+          
+        </div>
+      </div>
     </div>
   );
 }
