@@ -1,38 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import Home from './components/home';
+import Menus from './components/menus';
 
-import './App.css';
-import epazote from './assets/images/epazote.png';
+import { Switch, Route, Redirect } from "react-router-dom";
 
-import { animateScroll as scroller } from 'react-scroll';
-
-function App() {
-  const [scroll, setScroll] = useState(0);
-
-  useEffect(() => {
-    window.addEventListener('scroll', updateScroll);
-    return () => {
-      window.removeEventListener('scroll', updateScroll);
-    }
-  }, []);
-  const updateScroll = () => setScroll(window.pageYOffset);
-
-  const scrollBottom = () => {
-    if (scroll > 450) scroller.scrollToTop();
-    else scroller.scrollToBottom();
-  }
+export default function App() {
   return (
-    <div id="container">
-      <button id="scoll-btn" onClick={scrollBottom}>{scroll > 450 ? 'INICIO' : 'MENU'}</button>
-      <div id="main">
-        <img src={epazote} alt="epazote.png"/>
-      </div>
-      <div id="menu">
-        <div id="menu-container">
-          
-        </div>
-      </div>
-    </div>
-  );
+    <Switch>
+      <Route path="/" exact component={Home} />
+      <Route path="/menus" exact component={Menus} />
+      <Route><Redirect to="/" /></Route>
+    </Switch>
+  )
 }
-
-export default App;

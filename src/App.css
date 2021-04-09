@@ -1,20 +1,15 @@
-#container {
-
-}
-
 #main {
   background: #282c342f url(assets/images/epazote_background.jpg);
-  background-size: cover;
 }
 
 #menu {
   background: #282c342f url(assets/images/menu-container.jpg);
-  background-size: cover;
 }
 
 #main, #menu {
   height: 100vh;
   width: 100vw;
+  background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -54,12 +49,47 @@
 }
 
 #menu #menu-container {
-  margin-top: 0px;
-  background-color: aqua;
+  margin-top: 20px;
   width: 50%;
-  height: 98%;
+  height: 100%;
   overflow-y: auto;
-  margin-bottom: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.button {
+  width: 250px;
+  height: 100px;
+  transition: all .4s;
+}
+
+.button:hover {
+  cursor: pointer;
+  opacity: .5;
+  margin: 10px;
+  margin-left: 50px;
+}
+
+@media (max-height: 300px) {
+  .button {
+    width: 110px;
+    height: 50px;
+  }
+}
+
+@media (max-width: 510px) {
+  #main img {
+    width: 70vw;
+    margin-left: -35vw;
+  margin-top: -35vw;
+  }
+
+  .button {
+    width: 150px;
+    height: 80px;
+  }
 }
 
 /* @media (prefers-reduced-motion: no-preference) {
