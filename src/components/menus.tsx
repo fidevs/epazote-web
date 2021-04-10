@@ -13,10 +13,14 @@ interface MenusType {[key: string]: string};
 const MENUS_ARRAY: MenusType = { desayunos, comidas, especial, pizza, cocteles };
 
 export default class Menus extends Component<RouteChildrenProps, { menu: string | null }> {
-  state = { menu: null };
+  constructor(props: RouteChildrenProps) {
+    super(props);
+    this.state = { menu: null };
+  }
+
   componentDidMount() {
     const menu: keyof typeof MENUS_ARRAY | string | null = new URLSearchParams(this.props.location.search).get("menu");
-    if (menu !== null) this.setState({ menu: this.getKeyValue(MENUS_ARRAY)(menu) });
+    if (menu !== null && MENUS_ARRAY.hasOwnProperty(menu)) this.setState({ menu: this.getKeyValue(MENUS_ARRAY)(menu) });
     else this.props.history.push("/");
   }
 

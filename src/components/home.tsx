@@ -20,7 +20,10 @@ const BUTTONS: ButtonItem[] = [
 ];
 
 export default class Home extends Component<RouteComponentProps, { scroll: number }> {
-  state = { scroll: 0 };
+  constructor(props:RouteComponentProps) {
+    super(props);
+    this.state = { scroll: 0 };
+  }
 
   componentDidMount() {
     window.addEventListener('scroll', this.updateScroll);
