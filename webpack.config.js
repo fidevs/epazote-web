@@ -49,7 +49,7 @@ module.exports = {
                 test: /\.(png|jpe?g|gif)$/i,
                 loader: 'file-loader',
                 options: {
-                    name: '[hash][ext][query]',
+                    name: '[hash].[ext][query]',
                     outputPath: 'images',
                 }
             },
